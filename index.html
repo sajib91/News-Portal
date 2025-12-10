@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav id="navbar" class="hidden">
+        <div class="nav-content">
+            <h1>Daily News</h1>
+            <div>
+                <span id="user-display"></span>
+                <button onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section id="login-view">
+            <div class="login-card">
+                <h2>Welcome to News Portal</h2>
+                <p>Please select a user to simulate login:</p>
+                <select id="user-select">
+                    <option value="">-- Select User --</option>
+                </select>
+                <button onclick="handleLogin()">Login</button>
+            </div>
+        </section>
+
+        <section id="list-view" class="hidden">
+            <div class="list-header">
+                <h2>Latest News</h2>
+                <div class="actions">
+                    <input type="text" id="search-box" placeholder="Search title..." onkeyup="filterNews()">
+                    <button class="btn-primary" onclick="showCreateView()">+ Create News</button>
+                </div>
+            </div>
+            <div id="news-container"></div>
+        </section>
+
+        <section id="form-view" class="hidden">
+            <h2 id="form-title">Create News</h2>
+            <form onsubmit="handleNewsSubmit(event)">
+                <input type="hidden" id="news-id">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="news-title" required>
+                </div>
+                <div class="form-group">
+                    <label>Body (Min 20 chars)</label>
+                    <textarea id="news-body" rows="5" required minlength="20"></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Save News</button>
+                <button type="button" onclick="showListView()">Cancel</button>
+            </form>
+        </section>
+
+        <section id="detail-view" class="hidden">
+            <button onclick="showListView()" class="back-link">← Back to News</button>
+            <div id="detail-content"></div>
+            
+            <div class="comments-section">
+                <h3>Comments</h3>
+                <div id="comments-list"></div>
+                
+                <div class="add-comment">
+                    <h4>Add a Comment</h4>
+                    <textarea id="comment-text" placeholder="Write your thought here..."></textarea>
+                    <button onclick="submitComment()" class="btn-primary">Post Comment</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
